@@ -1,0 +1,21 @@
+server {
+	listen       80;
+	listen       443 ssl;
+
+	location /api/ {
+		proxy_pass   http://cloupad-server-service:$CLOUPAD_SERVER_SERVICE_SERVICE_PORT/;
+	}
+
+	location / {
+		proxy_pass   http://cloupad-client-service:$CLOUPAD_CLIENT_SERVICE_SERVICE_PORT;
+	}
+
+	ssl_certificate      /etc/nginx/certs/localhost.crt;
+	ssl_certificate_key  /etc/nginx/certs/localhost.key;
+
+	ssl_session_cache    shared:SSL:1m;
+	ssl_session_timeout  5m;
+
+	ssl_ciphers  HIGH:!aNULL:!MD5;
+	ssl_prefer_server_ciphers  on;
+}

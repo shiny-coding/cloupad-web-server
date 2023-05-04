@@ -1,0 +1,3 @@
+
+docker run -p 80:80 -p 443:443 --add-host host.docker.internal:host-gateway -it --rm serhiichechin/cloupad-web-server:v1.0.0
+docker run -p 80:80 -p 443:443 --add-host host.docker.internal:host-gateway -it --rm --entrypoint bash serhiichechin/cloupad-web-server:v1.0.0
